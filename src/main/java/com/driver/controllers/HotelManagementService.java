@@ -4,44 +4,36 @@ import com.driver.model.Booking;
 import com.driver.model.Facility;
 import com.driver.model.Hotel;
 import com.driver.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public class HotelManagemetService {
-    HotelMangagementRepository repository = new HotelMangagementRepository();
+@Service
+public class HotelManagementService {
 
-    public String addHotel(Hotel hotel){
-
-        String ans = repository.addHotel(hotel);
-
-        return ans;
+    HotelManagementRepoaitory hotelManagementRepoaitory = new HotelManagementRepoaitory();
+    public String addHotel(Hotel hotel) {
+        return hotelManagementRepoaitory.addHotel(hotel);
     }
 
-    public Integer addUser(User user){
-
-        int adharNo = repository.addUser(user);
-
-        return adharNo;
+    public Integer addUser(User user) {
+        return hotelManagementRepoaitory.addUser(user);
     }
 
-    public String getHotelWithMostFacility(){
-
-        String hotelName = repository.getHotelWithMostFacilities();
-        return hotelName;
+    public String getHotelWithMostFacilities() {
+        return hotelManagementRepoaitory.getHotelWithMostFacilities();
     }
 
-    public int bookARoom(Booking booking){
-        return repository.bookARoom(booking);
+    public int bookRoom(Booking booking) {
+        return hotelManagementRepoaitory.bookRoom(booking);
     }
 
-    public int getBooking(Integer adharCard){
-
-        int count = repository.getBooking(adharCard);
-        return count;
+    public int getBookings(Integer aadharCard) {
+        return hotelManagementRepoaitory.getBookings(aadharCard);
     }
 
-    public Hotel updateFacility(List<Facility> newFacilities, String hotelName){
-
-        return repository.updateFacility(newFacilities, hotelName);
+    public Hotel updateFacilities(List<Facility> newFacilities, String hotelName) {
+        return hotelManagementRepoaitory.updateFacilities(newFacilities, hotelName);
     }
 }
